@@ -1,35 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DefenseSimulation.Interfaces;
 
 namespace DefenseSimulation
 {
-    public enum FireResult
-    {
-        Hit,
-        Miss
-    }
-
-    public class FiringUnit
+    public class MissileLauncher : IWeapon
     {
         private readonly double hitProbability;
 
-        public FiringUnit(double hitProbability)
+        public MissileLauncher(double hitProbability)
         {
             this.hitProbability = hitProbability;
         }
 
         public FireResult Fire()
         {
-            if (SimulateHitRoll() <= hitProbability)
+            if (SimulateLaunch() <= hitProbability)
                 return FireResult.Hit;
 
             return FireResult.Miss;
         }
 
-        private static double SimulateHitRoll()
+        private static double SimulateLaunch()
         {
             Random random = new Random();
             double hitRoll = random.NextDouble();

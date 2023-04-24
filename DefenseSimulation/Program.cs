@@ -1,16 +1,15 @@
 ﻿using DefenseSimulation;
 
 Radar radar = new ();
-IFF identifyFF = new ();
-PatriotSim patriotSim = new (radar, identifyFF);
+IFF identificationFF = new ();
+PatriotSystem patriot = new (radar, identificationFF);
 
 int simulateCycles = radar.GetRadarDataCount();
 
 for (int i = 1; i <= simulateCycles; i++)
 {
-    Console.WriteLine("\nSimulate cycle {0}", i);
-    Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
-    patriotSim.Run();
+    Console.WriteLine("\n" + DateTime.Now.ToString("HH:mm:ss") + " - Simulate cycle {0}", i);
+    patriot.Run();
 
     Thread.Sleep(1000);
 }
